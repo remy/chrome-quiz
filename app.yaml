@@ -1,0 +1,21 @@
+application: chrome-quiz
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /chrome-quiz.js
+  static_files: public/chrome-quiz.js
+  upload: public/chrome-quiz.js
+
+- url: /chrome-quiz.min.js
+  static_files: public/chrome-quiz.min.js
+  upload: public/chrome-quiz.min.js
+
+- url: /
+  static_files: public/index.html
+  upload: public/index.html
+
+- url: /save
+  script: save.py
+
