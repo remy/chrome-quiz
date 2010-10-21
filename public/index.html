@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>Chrome Quiz</title>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular&amp;subset=latin' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lobster&amp;subset=latin' rel='stylesheet' type='text/css'>
+<style>
+body, html {
+  background: white;
+  border: 0px;
+  color: #333;
+  font-family: 'Droid Sans', arial, serif;
+  font-size: 16px;
+  line-height: 150%;
+  margin: 0px;
+  padding: 0px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: auto;
+  padding-bottom: 20px;
+  overflow-x: hidden;
+}
+
+h1 { 
+  background: #fff;
+  font-family: 'Lobster', arial, serif;
+  font-size: 50px;
+  line-height: 50px;
+  margin: 0;
+  padding: 0.67em 0px;
+  text-align: center;
+  text-shadow: 0 0 20px #ccc;
+  z-index: 2;
+  position: relative;
+}
+
+h1 em {
+  font-style: normal;
+  color: #FA2BC2;
+}
+
+a {
+  color: #F300BD;
+  padding: 1px;
+}
+
+a:hover {
+  background: #F300BD;
+  color: #fff;
+  text-decoration: none;
+}
+
+h2, p {
+  width: 520px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #666;
+  font-weight: normal;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+input {
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 4px 2px;
+  border: 0;
+  border-bottom: 2px solid #000;
+/*  background: rgba(250,43,194,.15);*/
+  outline: none;
+}
+
+input:hover,
+input:focus {
+  background: #F5F7BB;
+}
+
+.button {
+  display: block;
+  margin: 40px auto 0;
+  cursor: pointer;
+  background: #FA00C1;
+  background: -moz-linear-gradient(0% 100% 90deg, #FA00C1, #D700A8);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#FA00C1));
+  border: 1px solid #F440CE;
+  border-radius: 18px;
+  -moz-border-radius: 18px;
+  -webkit-border-radius: 18px;
+  box-shadow: inset 0 1px 0 0 #dd2f5d;
+  -moz-box-shadow: inset 0 1px 0 0 #dd2f5d;
+  -webkit-box-shadow: inset 0 1px 0 0 #dd2f5d;
+  color: #ffffff;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 8px 0 8px 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #400011;
+  text-transform: uppercase;
+  width: 200px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #F300BD;
+  background: -moz-linear-gradient(0% 100% 90deg, #F300BD, #D700A8);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#A40086));
+}
+
+.button:active {
+  background: #d12250;
+  background: -moz-linear-gradient(0% 100% 90deg, #D700A8, #FA00C1);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FA00C1), to(#D700A8));
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.task6 #send {
+  background: #1E8800;
+  background: -moz-linear-gradient(0% 100% 90deg, #1E8800, #41E300);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#41E300), to(#1E8800));
+  border: 1px solid #258000;
+  box-shadow: inset 0 1px 0 0 #65DC00;
+  -moz-box-shadow: inset 0 1px 0 0 #65DC00;
+  -webkit-box-shadow: inset 0 1px 0 0 #65DC00;
+  text-shadow: 0 1px 0 #1A3800;
+}
+
+.task6 #send:hover {
+  background: #41E300;
+  background: -moz-linear-gradient(0% 100% 90deg, #144900, #41E300);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#41E300), to(#144900));
+}
+
+.task6 #send:active {
+  background: #1E8800;
+  background: -moz-linear-gradient(0% 100% 90deg, #41E300, #1E8800);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1E8800), to(#41E300));
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.buttons .button {
+  display: inline-block;
+  margin: 40px 10px;
+}
+
+.buttons .button:first-child {
+  width: 100px;
+}
+
+section {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  left: 0;
+/*  opacity: 0;*/
+  background: #fff;
+/*  min-height: 100%;*/
+  -webkit-transform: translate(0, -100%);
+  -webkit-transition-property: translate opacity;
+  -webkit-transition-duration: 200ms;
+  -webkit-transition-timing-function: ease-out;
+}
+
+section:first-of-type,
+section:target {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+}
+
+form > div:not(.buttons) {
+  opacity: 0;
+  -webkit-transition: opacity 200ms ease-out;
+}
+
+.task1 .task1,
+.task2 .task2,
+.task3 .task3,
+.task4 .task4,
+.task5 .task5 {
+  opacity: 1;
+}
+
+#thankyou {
+  padding: 200px 0;
+}
+
+#thankyou h1 {
+  font-size: 50px;
+}
+
+#thankyou h2 {
+  text-align: center;
+  color: #000;
+}
+</style>
+</head>
+<body>
+<h1>Welcome to the <em>Chrome</em> Quiz!</h1>
+<section id="welcome">
+  <h2>Get started</h2>
+  <p>To win your free gift on the Google Developer Day, enter your name below and complete the Chrome quiz. Good luck!</p>
+  <p><label for="name">Your name:</label> <input data-next="#quiz" type="text" id="name" /></p>
+  <div id="getchrome">
+  <h2>Get your hands on Google Chrome</h2>
+  <p>Either open up Google Chrome, or go download <a href="http://www.google.com/chrome/">Chrome</a>, and come back here for the best chance of completing this quiz.</p>
+  <script>
+  // yes, that's right, we're user agent sniffing. it's because
+  // we *really* want this particular user to use Chrome, and
+  // frankly if they're smart enough to change the user agent,
+  // then this quiz is going to be a cakewalk for them.
+  if (/chrome/i.test(navigator.userAgent)) {
+    document.getElementById('getchrome').style.display = 'none';
+  }
+  </script>
+  </div>
+
+  <h2>A free tip!</h2>
+  <p>You'll want to break open the <a target="_blank" href="http://www.chromium.org/devtools">Developer Tools</a> to complete the quiz.</p>
+  <a class="button" href="#quiz">Get me to the quiz &rarr;</a>
+</section>
+<section id="quiz">
+  <form id="quizForm" action="/save" method="get">
+    <div class="task1">
+      <h2>1. Style manipulation</h2>
+      <p>Change the font size of this page's title to exactly 18px</p>      
+    </div>
+    <div class="task2">
+      <h2>2. DOM manipulation</h2>
+      <p>Edit the html&hellip;adding a new element or tweaking some on-page text</p>
+    </div>
+    <div class="task3">
+      <h2>3. Variables</h2>
+      <p><label for="sp">Enter the value of <code>secretPass</code>:</label> <input data-next="#docsize" id="sp" type="text" /></p>
+    </div>
+    <div class="task4">
+      <h2>4. Resources</h2>
+  <p><label for="docsize">Enter the total size of the page in KB:</label> <input type="number" id="docsize" size="5" value="0.00" min="0" /></p>
+    </div>
+    <div class="task5">
+      <h2>5. Data storage</h2>
+      <p>Delete the "unwanted" item from localStorage</p>
+    </div>
+    <div class="buttons">
+      <a class="back button" href="#welcome">&larr; Back</a>
+      <input class="button" type="submit" id="send" value="I want my free gift!" />      
+    </div>
+  </form>
+</section> 
+<section id="thankyou">
+  <h1>...and you're <em>done!</em></h1>
+  <h2>Your gift code: <span id="code">not ready yet - <em>complete the quiz</em></span></h2>
+  <p>Take note of your gift code above, you'll need it to collect your gift on the Google Developer Days.</p>
+</section>   
+<script src="chrome-quiz.js"></script>
+</body>
+</html>
