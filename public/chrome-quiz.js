@@ -8,50 +8,17 @@ window.quiz = (function () {
 var tasks = {},
     send = document.getElementById('send'),
     secretPass = (+new Date).toString(32).substr(3).toUpperCase();
-    
-tasks['1'] = function () {
-  var h1 = document.querySelector('h1'),
-      comp = document.defaultView.getComputedStyle(h1, null);
 
-  (function checkfontsize(){
-    if (comp['font-size'] == '18px') {
-       showTask(2);
-       return;
-    }
-    setTimeout(checkfontsize, 200);
-  })();
-};
+function task(id, fn) {
+  tasks[id] = function () {
+    fn.call(fn, function () {
+      showTask(id+1);
+    });
+  };
+}
 
-tasks['2'] = function () {
-  function handler(event) {
-    document.removeEventListener('DOMCharacterDataModified', handler, true);
-    document.removeEventListener('DOMNodeInserted', handler, true);
-    showTask(3);
-  }
-  
-  document.addEventListener('DOMCharacterDataModified', handler, true);
-  document.addEventListener('DOMNodeInserted', handler, true);
-};
-
-tasks['3'] = function () {
-  // should have been done this way
-  window.__defineGetter__("secretPass", function() {
-    // showTask(4);
-    return secretPass;
-  });
-  
-  function complete() {
-    if (this.value == secretPass) {
-      showTask(4);
-      sp.removeEventListener('keyup', complete, false);
-    }
-  }
-  
-  var sp = document.getElementById('sp');
-  sp.addEventListener('keyup', complete, false);
-};
-
-tasks['4'] = function () {
+// doc size
+task(1, function (next) {
   var xhr = new XMLHttpRequest(),
       docsize = 0;
 
@@ -67,7 +34,7 @@ tasks['4'] = function () {
   
   function complete() {
     if (this.value == docsize) {
-      showTask(5);
+      next();
       taskvalue.removeEventListener('keyup', complete, false);
     }
   }
@@ -77,23 +44,67 @@ tasks['4'] = function () {
   // not using the change event, because the input[type=number] 
   // doesn't increment by 0.10 - but rather integers :(
   taskvalue.addEventListener('keyup', complete, false);
-};
+});
 
-tasks['5'] = function () {
-  localStorage.setItem('unwanted', 'IE6');
+// Style manip
+task(2, function (next) {
+  var h1 = document.querySelector('h1'),
+      comp = document.defaultView.getComputedStyle(h1, null);
 
+  (function checkfontsize(){
+    if (comp['font-size'] == '18px') {
+       next();
+       return;
+    }
+    setTimeout(checkfontsize, 200);
+  })();
+});
+
+// DOM manip
+task(3, function (next) {
+  function handler(event) {
+    document.removeEventListener('DOMCharacterDataModified', handler, true);
+    document.removeEventListener('DOMNodeInserted', handler, true);
+    next();
+  }
+  
+  document.addEventListener('DOMCharacterDataModified', handler, true);
+  document.addEventListener('DOMNodeInserted', handler, true);
+});
+
+// secretPass
+task(4, function (next) {
+  // should have been done this way
+  window.__defineGetter__("secretPass", function() {
+    return secretPass;
+  });
+  
+  function complete() {
+    if (this.value == secretPass) {
+      next();
+      sp.removeEventListener('keyup', complete, false);
+    }
+  }
+  
+  var sp = document.getElementById('sp');
+  sp.addEventListener('keyup', complete, false);
+});
+
+// localStorage
+task(5, function (next) {
   // should use window.addEventListener('storage', fn, false); - but it don't work properly
 
   (function checkstorage(){
     if (localStorage.getItem('unwanted') === null) {
-       showTask(6);
+       next();
        return;
     }
     setTimeout(checkstorage, 200);
   })();
-};
+});
 
-tasks['6'] = function () {}; // not quite convinced I need this
+// end
+task(6, function () {}); // not quite convinced I need this
 
 function showTask(id) {
   if (tasks[id] !== undefined) {
@@ -111,6 +122,9 @@ function showTask(id) {
     }
   }
 }
+
+// up front local storage setting
+localStorage.setItem('unwanted', 'IE6');
 
 showTask(1);
 
