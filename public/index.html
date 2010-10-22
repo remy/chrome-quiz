@@ -53,7 +53,7 @@ a:hover {
   text-decoration: none;
 }
 
-h2, p {
+h2, p, .social-links {
   width: 520px;
   margin: 0 auto;
 }
@@ -87,7 +87,8 @@ input:focus {
   display: block;
   margin: 40px auto 0;
   cursor: pointer;
-  background: #FA00C1;
+/*  background: #FA00C1;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #FA00C1, #D700A8);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#FA00C1));
   border: 1px solid #F440CE;
@@ -111,14 +112,16 @@ input:focus {
 }
 
 .button:hover {
-  background: #F300BD;
+/*  background: #F300BD;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #F300BD, #D700A8);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#A40086));
 }
 
 .button:focus,
 .button:active {
-  background: #d12250;
+/*  background: #d12250;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #D700A8, #FA00C1);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FA00C1), to(#D700A8));
   box-shadow: none;
@@ -127,7 +130,8 @@ input:focus {
 }
 
 .task6 #send {
-  background: #1E8800;
+/*  background: #1E8800;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #1E8800, #41E300);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#41E300), to(#1E8800));
   border: 1px solid #258000;
@@ -138,14 +142,16 @@ input:focus {
 }
 
 .task6 #send:hover {
-  background: #41E300;
+/*  background: #41E300;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #144900, #41E300);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#41E300), to(#144900));
 }
 
 .task6 #send:active,
 .task6 #send:focus {
-  background: #1E8800;
+/*  background: #1E8800;*/
+  background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #41E300, #1E8800);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1E8800), to(#41E300));
   box-shadow: none;
@@ -223,6 +229,31 @@ form > div:not(.buttons) {
   counter-increment: id;
 }
 
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links a:hover {
+  background: none;
+}
+
+.social-links .c1,
+.social-links .c2 {
+  display: inline;
+}
+
+#tweetthis {
+  height: 20px;
+  padding-top: 7px;
+  width: 130px;
+}
+
+iframe {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
 </style>
 </head>
 <body>
@@ -281,6 +312,27 @@ form > div:not(.buttons) {
   <h1>...and you're <em>done!</em></h1>
   <h2>Your gift code: <span id="code">not ready yet - <em>complete the quiz</em></span></h2>
   <p>Take note of your gift code above, you'll need it to collect your gift on the Google Developer Days.</p>
+  <div class="social-links"> 
+    <a data-g-event="tweet_icon" href="http://twitter.com/home?status=Google%20Chrome%20Quiz!%20%23gddbr%20<!--THIS-URL-TO-BE-ADDED-->" target="_blank"><img alt="Twitter" src="//www.google.com/images/icons/thirdparty/twitter-16.gif"></a> 
+
+    <a data-g-event="buzz_icon" href="http://www.google.com/buzz/post?message=Google%20Chrome%20Quiz!%20%23gddbr&amp;url=<!--THIS-URL-TO-BE-ADDED-->" target="_blank"><img alt="Buzz" src="//www.google.com/images/icons/buzz-16.png"></a>
+
+    <a data-g-event="fb_icon" href="http://www.facebook.com/sharer.php?u=<!--THIS-URL-TO-BE-ADDED-->&amp;t=Google%20Chrome%20Quiz" target="_blank"><img alt="Facebook" src="//www.google.com/images/icons/thirdparty/facebook-16.gif"></a>
+
+    <div class="c1" data-g-event="orkut_icon" id="orkut_share"></div>
+    <script src="http://www.google.com/jsapi"></script>
+    <script> 
+  google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_MINI,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share");}, true);
+    </script> 
+      
+    <div class="c2" id="orkut_share_full"></div>
+    <script src="http://www.google.com/jsapi"></script>
+    <script> 
+    google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_REGULAR,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share_full");}, true);
+    </script> 
+
+    <iframe id="tweetthis" scrolling="no" src="//google-io.googlecode.com/hg/gdd-tweet-this.html#sao-paulo"></iframe> 
+  </div>
 </section>   
 <script src="chrome-quiz.js"></script>
 </body>
