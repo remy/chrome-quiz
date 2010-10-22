@@ -18,11 +18,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 import gdata.spreadsheet.text_db
 import urllib
-
-email = 'your-email-address@gmail.com'
-password = 'your-password'
-spreadsheet = '------------------' # name of spreadsheet  (long looking code)
-worksheet = '---' # name of individual worksheet (short like "od6")
+import config # contains: email, password, spreadsheet, worksheet
 
 def StringToDictionary(row_data):
   result = {}
@@ -37,11 +33,11 @@ class saveUser(webapp.RequestHandler):
       
       try:
         gd_client = gdata.spreadsheet.service.SpreadsheetsService()
-        gd_client.email = email
-        gd_client.password = password
+        gd_client.email = config.email
+        gd_client.password = config.password
         gd_client.source = 'chrome-quiz'
         gd_client.ProgrammaticLogin()
-        entry = gd_client.InsertRow(StringToDictionary(self.request.body), spreadsheet, worksheet)
+        entry = gd_client.InsertRow(StringToDictionary(self.request.body), config.spreadsheet, config.worksheet)
         if isinstance(entry, gdata.spreadsheet.SpreadsheetsList):
           self.response.out.write('1')
         else:
