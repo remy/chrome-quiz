@@ -4,10 +4,8 @@
 <meta charset=utf-8 />
 <title>Chrome Quiz</title>
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular&amp;subset=latin' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lobster&amp;subset=latin' rel='stylesheet' type='text/css'>
 <style>
 body, html {
-  background: white;
   border: 0px;
   color: #333;
   font-family: 'Droid Sans', arial, serif;
@@ -15,42 +13,34 @@ body, html {
   line-height: 150%;
   margin: 0px;
   padding: 0px;
+  background: #d4e5f7;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  margin: auto;
   padding-bottom: 20px;
   overflow-x: hidden;
+  background: #d4e5f7;
+}
+
+#content {
+  width: 610px;
+  margin: 10px auto;
+  background: #fff;
+  position: relative;
+  border: 1px solid #ccc;
 }
 
 h1 { 
   background: #fff;
-  font-family: 'Lobster', arial, serif;
-  font-size: 50px;
+  font-size: 36px;
   line-height: 50px;
   margin: 0;
   padding: 0.67em 0px;
   text-align: center;
-  text-shadow: 0 0 20px #ccc;
   z-index: 2;
   position: relative;
-}
-
-h1 em {
-  font-style: normal;
-  color: #FA2BC2;
-}
-
-a {
-  color: #F300BD;
-  padding: 1px;
-}
-
-a:hover {
-  background: #F300BD;
-  color: #fff;
-  text-decoration: none;
+  background: url(/wrench.png) no-repeat 570px center;
 }
 
 h2, p, .social-links {
@@ -65,6 +55,10 @@ h2 {
   font-weight: normal;
   margin-top: 40px;
   margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
 }
 
 input {
@@ -87,26 +81,21 @@ input:focus {
   display: block;
   margin: 40px auto 0;
   cursor: pointer;
-/*  background: #FA00C1;*/
   background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #FA00C1, #D700A8);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#FA00C1));
-  border: 1px solid #F440CE;
-  border-radius: 18px;
-  -moz-border-radius: 18px;
-  -webkit-border-radius: 18px;
-  box-shadow: inset 0 1px 0 0 #dd2f5d;
-  -moz-box-shadow: inset 0 1px 0 0 #dd2f5d;
-  -webkit-box-shadow: inset 0 1px 0 0 #dd2f5d;
-  color: #ffffff;
-  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%,#F8F8F8), color-stop(5%,#F8F8F8), color-stop(15%,#F2F2F2), color-stop(100%,#EEEFEE));
+  border: 2px solid #b2b6bd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 8px;
+  color: #000;
+/*  font-family: "helvetica neue", helvetica, arial, sans-serif;*/
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
-  padding: 8px 0 8px 0;
+  padding: 15px 20px;
   text-align: center;
-  text-shadow: 0 1px 0 #400011;
-  text-transform: uppercase;
+/*  text-transform: uppercase;*/
   width: 200px;
   text-decoration: none;
 }
@@ -115,30 +104,20 @@ input:focus {
 /*  background: #F300BD;*/
   background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #F300BD, #D700A8);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D700A8), to(#A40086));
-}
-
-.button:focus,
-.button:active {
-/*  background: #d12250;*/
-  background: none;
-  background: -moz-linear-gradient(0% 100% 90deg, #D700A8, #FA00C1);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FA00C1), to(#D700A8));
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EBEBEB), to(#EEEFEE));
 }
 
 .task6 #send {
 /*  background: #1E8800;*/
+  color: #fff;
   background: none;
   background: -moz-linear-gradient(0% 100% 90deg, #1E8800, #41E300);
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#41E300), to(#1E8800));
-  border: 1px solid #258000;
+  border: 2px solid #258000;
   box-shadow: inset 0 1px 0 0 #65DC00;
   -moz-box-shadow: inset 0 1px 0 0 #65DC00;
   -webkit-box-shadow: inset 0 1px 0 0 #65DC00;
-  text-shadow: 0 1px 0 #1A3800;
+/*  text-shadow: 0 1px 0 #1A3800;*/
 }
 
 .task6 #send:hover {
@@ -182,14 +161,16 @@ section {
 /*  opacity: 0;*/
   background: #fff;
 /*  min-height: 100%;*/
+  top: -300%;
   -webkit-transform: translate(0, -100%);
-  -webkit-transition-property: translate opacity;
+  -webkit-transition-property: translate;
   -webkit-transition-duration: 200ms;
   -webkit-transition-timing-function: ease-out;
 }
 
 section:first-of-type,
 section:target {
+  top: 0;
   opacity: 1;
   -webkit-transform: translate(0, 0);
 }
@@ -257,83 +238,86 @@ iframe {
 </style>
 </head>
 <body>
-<h1>Welcome to the <em>Chrome</em> Quiz!</h1>
-<section id="welcome">
-  <h2>Get started</h2>
-  <p>To win your free gift on the Google Developer Day, enter your name below and complete the Chrome quiz. Good luck!</p>
-  <p><label for="name">Your name:</label> <input data-next="#quiz" type="text" id="name" /></p>
-  <div id="getchrome">
-  <h2>Get your hands on Google Chrome</h2>
-  <p>Either open up Google Chrome, or go download <a href="http://www.google.com/chrome/">Chrome</a>, and come back here for the best chance of completing this quiz.</p>
-  <script>
-  // yes, that's right, we're user agent sniffing. it's because
-  // we *really* want this particular user to use Chrome, and
-  // frankly if they're smart enough to change the user agent,
-  // then this quiz is going to be a cakewalk for them.
-  if (/chrome/i.test(navigator.userAgent)) {
-    document.getElementById('getchrome').style.display = 'none';
-  }
-  </script>
+  <div id="content">
+    <h1>Welcome to the Chrome Quiz!</h1>
+    <section id="welcome">
+      <h2>Get started</h2>
+      <p>To win your free gift on the Google Developer Day, enter your name below and complete the Chrome quiz. Good luck!</p>
+      <p><label for="name">Your name:</label> <input data-next="#quiz" type="text" id="name" /></p>
+      <div id="getchrome">
+      <h2>Get your hands on Google Chrome</h2>
+      <p>Either open up Google Chrome, or go download <a href="http://www.google.com/chrome/">Chrome</a>, and come back here for the best chance of completing this quiz.</p>
+      <script>
+      // yes, that's right, we're user agent sniffing. it's because
+      // we *really* want this particular user to use Chrome, and
+      // frankly if they're smart enough to change the user agent,
+      // then this quiz is going to be a cakewalk for them.
+      if (/chrome/i.test(navigator.userAgent)) {
+        document.getElementById('getchrome').style.display = 'none';
+      } 
+      </script>
+      </div>
+
+      <h2>A free tip!</h2>
+      <p>You'll want to break open the <a target="_blank" href="http://www.chromium.org/devtools">Developer Tools</a> to complete the quiz.</p>
+      <a class="button" href="#quiz">Get me to the quiz &rarr;</a>
+    </section>
+    <section id="quiz">
+      <form id="quizForm" action="/save" method="get">
+        <div class="task1">
+          <h2>Resources</h2>
+          <p><label for="docsize">Enter the size of <em>this document</em> in KB:</label> <input type="number" id="docsize" size="5" value="0.00" min="0" step="0.01" /></p>
+          <p><small>Tip: select the Documents filter from the Resources tab</small></p>
+        </div>
+        <div class="task2">
+          <h2>Style manipulation</h2>
+          <p>Change the font size of this page's title to exactly 18px</p>      
+        </div>
+        <div class="task3">
+          <h2>DOM manipulation</h2>
+          <p>Edit the html&hellip;adding a new element or tweaking some on-page text</p>
+        </div>
+        <div class="task4">
+          <h2>Variables</h2>
+          <p><label for="sp">Enter the value of <code>secretPass</code>:</label> <input data-next="#docsize" id="sp" type="text" /></p>
+        </div>
+        <div class="task5">
+          <h2>Data storage</h2>
+          <p>Delete the "unwanted" item from localStorage</p>
+        </div>
+        <div class="buttons">
+          <a class="back button" href="#welcome">&larr; Back</a>
+          <input class="button" type="submit" id="send" value="I want my free gift!" />      
+        </div>
+      </form>
+    </section> 
+    <section id="thankyou">
+      <h1>...and you're <em>done!</em></h1>
+      <h2>Your gift code: <span id="code">not ready yet - <em>complete the quiz</em></span></h2>
+      <p>Take note of your gift code above, you'll need it to collect your gift on the Google Developer Days.</p>
+      <div class="social-links"> 
+        <a data-g-event="tweet_icon" href="http://twitter.com/home?status=Google%20Chrome%20Quiz!%20http://chromedevtools.appspot.com/" target="_blank"><img alt="Twitter" src="//www.google.com/images/icons/thirdparty/twitter-16.gif"></a> 
+
+        <a data-g-event="buzz_icon" href="http://www.google.com/buzz/post?message=Google%20Chrome%20Quiz!&amp;url=http://chromedevtools.appspot.com/" target="_blank"><img alt="Buzz" src="//www.google.com/images/icons/buzz-16.png"></a>
+
+        <a data-g-event="fb_icon" href="http://www.facebook.com/sharer.php?u=http://chromedevtools.appspot.com/&amp;t=Google%20Chrome%20Quiz" target="_blank"><img alt="Facebook" src="//www.google.com/images/icons/thirdparty/facebook-16.gif"></a>
+
+        <div class="c1" data-g-event="orkut_icon" id="orkut_share"></div>
+        <script src="http://www.google.com/jsapi"></script>
+        <script> 
+      google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_MINI,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share");}, true);
+        </script> 
+
+        <div class="c2" id="orkut_share_full"></div>
+        <script src="http://www.google.com/jsapi"></script>
+        <script> 
+        google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_REGULAR,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share_full");}, true);
+        </script> 
+
+        <iframe id="tweetthis" scrolling="no" src="//google-io.googlecode.com/hg/gdd-tweet-this.html#sao-paulo"></iframe> 
+      </div>
+    </section>
   </div>
-
-  <h2>A free tip!</h2>
-  <p>You'll want to break open the <a target="_blank" href="http://www.chromium.org/devtools">Developer Tools</a> to complete the quiz.</p>
-  <a class="button" href="#quiz">Get me to the quiz &rarr;</a>
-</section>
-<section id="quiz">
-  <form id="quizForm" action="/save" method="get">
-    <div class="task1">
-      <h2>Resources</h2>
-  <p><label for="docsize">Enter the size of this document in KB:</label> <input type="number" id="docsize" size="5" value="0.00" min="0" step="0.01" /></p>
-    </div>
-    <div class="task2">
-      <h2>Style manipulation</h2>
-      <p>Change the font size of this page's title to exactly 18px</p>      
-    </div>
-    <div class="task3">
-      <h2>DOM manipulation</h2>
-      <p>Edit the html&hellip;adding a new element or tweaking some on-page text</p>
-    </div>
-    <div class="task4">
-      <h2>Variables</h2>
-      <p><label for="sp">Enter the value of <code>secretPass</code>:</label> <input data-next="#docsize" id="sp" type="text" /></p>
-    </div>
-    <div class="task5">
-      <h2>Data storage</h2>
-      <p>Delete the "unwanted" item from localStorage</p>
-    </div>
-    <div class="buttons">
-      <a class="back button" href="#welcome">&larr; Back</a>
-      <input class="button" type="submit" id="send" value="I want my free gift!" />      
-    </div>
-  </form>
-</section> 
-<section id="thankyou">
-  <h1>...and you're <em>done!</em></h1>
-  <h2>Your gift code: <span id="code">not ready yet - <em>complete the quiz</em></span></h2>
-  <p>Take note of your gift code above, you'll need it to collect your gift on the Google Developer Days.</p>
-  <div class="social-links"> 
-    <a data-g-event="tweet_icon" href="http://twitter.com/home?status=Google%20Chrome%20Quiz!%20http://chromedevtools.appspot.com/" target="_blank"><img alt="Twitter" src="//www.google.com/images/icons/thirdparty/twitter-16.gif"></a> 
-
-    <a data-g-event="buzz_icon" href="http://www.google.com/buzz/post?message=Google%20Chrome%20Quiz!&amp;url=http://chromedevtools.appspot.com/" target="_blank"><img alt="Buzz" src="//www.google.com/images/icons/buzz-16.png"></a>
-
-    <a data-g-event="fb_icon" href="http://www.facebook.com/sharer.php?u=http://chromedevtools.appspot.com/&amp;t=Google%20Chrome%20Quiz" target="_blank"><img alt="Facebook" src="//www.google.com/images/icons/thirdparty/facebook-16.gif"></a>
-
-    <div class="c1" data-g-event="orkut_icon" id="orkut_share"></div>
-    <script src="http://www.google.com/jsapi"></script>
-    <script> 
-  google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_MINI,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share");}, true);
-    </script> 
-      
-    <div class="c2" id="orkut_share_full"></div>
-    <script src="http://www.google.com/jsapi"></script>
-    <script> 
-    google.load("orkut.share", "1");google.setOnLoadCallback(function(){new google.orkut.share.Button({style:google.orkut.share.Button.STYLE_REGULAR,title:unescape("Google%20Chrome%20Quiz")}).draw("orkut_share_full");}, true);
-    </script> 
-
-    <iframe id="tweetthis" scrolling="no" src="//google-io.googlecode.com/hg/gdd-tweet-this.html#sao-paulo"></iframe> 
-  </div>
-</section>   
 <script src="chrome-quiz.js"></script>
 </body>
 </html>

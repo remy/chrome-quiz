@@ -16,6 +16,10 @@ handlers:
   static_files: public/index.html
   upload: public/index.html
 
+- url: /wrench.png
+  static_files: public/wrench.png
+  upload: public/wrench.png
+
 - url: /save
   script: save.py
 
