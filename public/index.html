@@ -454,7 +454,11 @@ function showTask(id) {
     // last stage
     if (id == ntasks) {
       document.body.className += ' taskscomplete';
+      {% if save %}
       send.value = 'Go get your free gift! »'; // not an xml entity
+      {% else %}
+      send.value = 'Yay - you did it! »';
+      {% endif %}
     } else if (id < (ntasks-2)) {
       send.value = 'Just ' + (ntasks-id) + ' tasks to go...';
     } else if (id < ntasks) {
